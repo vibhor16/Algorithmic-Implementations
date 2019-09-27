@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class LongestCommonSubstring {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            sc.nextLine();
+            String s1 = sc.nextLine();
+            String s2 = sc.nextLine();
+            char c1[] = s1.toCharArray();
+            char c2[] = s2.toCharArray();
+            int mat[][] = new int[n+1][m+1];
+            int max= 0;
+            for(int i=1;i<=n;i++){
+                for(int j=1;j<=m;j++){
+
+// If last characters match then take top left diagonal and add 1
+                    if(c1[i-1] == c2[j-1]){
+                        mat[i][j] = mat[i-1][j-1] + 1;
+                        max = Math.max(max,mat[i][j]);
+                    } else {
+
+// Else, keep it 0
+                        mat[i][j] = 0;
+                    }
+                }
+            }
+            System.out.println(max);
+        }
+    }
+}
+
